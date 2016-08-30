@@ -36,7 +36,9 @@
 				"css/embedvideo.css"
 			],
 			"scripts": [
-				"js/autoResize.js"
+				"js/autoResize.js",
+				"js/oggHelper.js",
+				"js/ogvjs/ogv.js"
 			],
 			"position": "top",
 			"targets": [

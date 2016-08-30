@@ -77,7 +77,5 @@
             wrap.width(newWidth).css('width', newWidth).attr('width', newWidth);
             wrap.height(newHeight).css('height', newHeight).attr('height', newHeight);
         }
-
     });
-
 }(mediaWiki, jQuery));
