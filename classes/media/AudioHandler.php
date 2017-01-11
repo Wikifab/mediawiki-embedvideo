@@ -64,6 +64,7 @@ class AudioHandler extends \MediaHandler {
 		$parts = array_reverse($parts);
 
 		$magnitude = [1, 60, 3600, 86400];
+		$seconds = 0;
 		foreach ($parts as $index => $part) {
 			$seconds += $part * $magnitude[$index];
 		}
@@ -103,14 +104,19 @@ class AudioHandler extends \MediaHandler {
 	 * @return	boolean	Success
 	 */
 	public function normaliseParams($file, &$parameters) {
-		$parameters['start'] = $this->parseTimeString($parameters['start']);
-		if ($parameters['start'] === false) {
-			unset($parameters['start']);
+
+		if (isset($parameters['start'])) {
+			$parameters['start'] = $this->parseTimeString($parameters['start']);
+			if ($parameters['start'] === false) {
+				unset($parameters['start']);
+			}
 		}
 
-		$parameters['end'] = $this->parseTimeString($parameters['end']);
-		if ($parameters['end'] === false) {
-			unset($parameters['end']);
+		if (isset($parameters['end'])) {
+			$parameters['end'] = $this->parseTimeString($parameters['end']);
+			if ($parameters['end'] === false) {
+				unset($parameters['end']);
+			}
 		}
 
 		$parameters['page'] = 1;

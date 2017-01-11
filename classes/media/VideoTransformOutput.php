@@ -22,6 +22,12 @@ class VideoTransformOutput extends \MediaTransformOutput {
 	 * @return	void
 	 */
 	public function __construct($file, $parameters) {
+		if( ! isset($parameters['start'])) {
+			$parameters['start'] = false;
+		}
+		if( ! isset($parameters['end'])) {
+			$parameters['end'] = false;
+		}
 		$this->file = $file;
 		$this->parameters = $parameters;
 		$this->width = $parameters['width'];
@@ -80,7 +86,9 @@ class VideoTransformOutput extends \MediaTransformOutput {
 			}
 		}
 
-		$html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' width='{$this->getWidth()}' height='{$this->getHeight()}'".(!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='{$style}'" : "")." controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
+		$size = "width='{$this->getWidth()}' height='{$this->getHeight()}'";
+
+		$html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' " . $size . (!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='{$style}'" : "")." controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
 
 		return $html;
 	}
