@@ -71,7 +71,8 @@
 	},
 	"config": {
 		"FFmpegLocation": "/usr/bin/ffmpeg",
-		"FFprobeLocation": "/usr/bin/ffprobe"
+		"FFprobeLocation": "/usr/bin/ffprobe",
+		"evResponsiveWidthMode": false
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [

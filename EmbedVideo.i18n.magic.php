@@ -20,4 +20,5 @@ $magicWords['en']  = [
 	'evu'		=> [0, 'evu'],
 	'ev_start'	=> [0, 'start=$1'],
 	'ev_end'	=> [0, 'end=$1'],
+	'ev_nocontrols'	=> [0, 'no-controls'],
 ];

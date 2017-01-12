@@ -26,6 +26,9 @@ class VideoHandler extends AudioHandler {
 		if ($name === 'width' || $name === 'width') {
 			return $value > 0;
 		}
+		if ($name === 'no-controls') {
+			return true;
+		}
 		return parent::validateParam($name, $value);
 	}
 
@@ -121,7 +124,6 @@ class VideoHandler extends AudioHandler {
 		if (!($flags & self::TRANSFORM_LATER)) {
 			//@TODO: Thumbnail generation here.
 		}
-
 		return new VideoTransformOutput($file, $parameters);
 	}
 

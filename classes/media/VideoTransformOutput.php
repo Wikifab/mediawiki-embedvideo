@@ -32,6 +32,7 @@ class VideoTransformOutput extends \MediaTransformOutput {
 		$this->parameters = $parameters;
 		$this->width = $parameters['width'];
 		$this->height = $parameters['height'];
+		$this->noControls = isset($parameters['no-controls']) ? true : false;
 		$this->path = $file->getLocalRefPath();
 		$this->lang = false;
 		$this->page = $parameters['page'];
@@ -60,6 +61,7 @@ class VideoTransformOutput extends \MediaTransformOutput {
 	 * @return	string	HTML
 	 */
 	public function toHtml($options = []) {
+		global $evResponsiveWidthMode;
 		$parameters = $this->parameters;
 
 		if (empty($options['no-dimensions'])) {
@@ -86,9 +88,14 @@ class VideoTransformOutput extends \MediaTransformOutput {
 			}
 		}
 
-		$size = "width='{$this->getWidth()}' height='{$this->getHeight()}'";
+		if($evResponsiveWidthMode) {
+			$size = 'width=100%';
+		} else {
+			$size = "width='{$this->getWidth()}' height='{$this->getHeight()}'";
+		}
+		$controls = $this->noControls ? '' : 'controls';
 
-		$html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' " . $size . (!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='{$style}'" : "")." controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
+		$html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' " . $size . (!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='{$style}'" : "")." $controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
 
 		return $html;
 	}
