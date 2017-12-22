@@ -78,5 +78,6 @@
 		"ParserFirstCallInit": [
 			"EmbedVideoHooks::onParserFirstCallInit"
 		]
-	}
+	},
+	"manifest_version":1
 }
